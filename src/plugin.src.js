@@ -84,9 +84,6 @@ export class CKEditor4Integration extends IntegrationModel {
         if (typeof editor.config.wirislistenersdisabled == 'undefined' ||
             !editor.config.wirislistenersdisabled) {
 
-            // First editor parsing.
-            editor.setData(Parser.initParse(editor.getData()));
-
             // Maintain currentInstance updated.
             editor.on('focus', function (event) {
                 WirisPlugin.currentInstance = WirisPlugin.instances[event.editor.name];
@@ -138,6 +135,9 @@ export class CKEditor4Integration extends IntegrationModel {
                 this.checkElement();
 
             }.bind(this));
+
+            // First editor parsing.
+            editor.setData(Parser.initParse(editor.getData()));
 
             this.checkElement();
         }

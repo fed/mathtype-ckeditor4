@@ -61,11 +61,17 @@ export default class ModalDialog {
       isDesktop: !isMobile && !isIOS && !isAndroid,
     };
 
+    // Start off rendering the modal in the center of the viewport.
+    const initialPosition = {
+      bottom: parseInt(0.5 * (deviceHeight - this.attributes.height), 10),
+      right: parseInt(0.5 * (deviceWidth - this.attributes.width), 10)
+    };
+
     this.properties = {
       created: false,
       state: '',
       previousState: '',
-      position: { bottom: 0, right: 10 },
+      position: initialPosition,
       size: { height: 338, width: 580 },
     };
 

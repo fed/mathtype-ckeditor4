@@ -340,6 +340,11 @@ export default class ContentManager {
     // Set disabled focus to prevent lost focus.
     this.setEmptyMathML();
     this.customEditors.disable();
+
+    // Trigger the editor#saveSnapshot event, which creates undo snapshots,
+    // i.e. your change becomes officially undoable, and fires editor#change automatically, if needed.
+    // We do this to force CKEditor to update (fire `change` event) when a formula gets inserted.
+    this.integrationModel.editorObject.fire('saveSnapshot');
   }
 
   /**
